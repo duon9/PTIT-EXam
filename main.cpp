@@ -6,12 +6,14 @@ using namespace std;
 
 struct Product
 {
+    string product_ID;
     string product_NAME;
     int product_PRICE = 0;
 };
 
-void add_product(vector<Product>& product, string name, int price) {
+void add_product(vector<Product>& product,string ID, string name, int price) {
     Product newProduct;
+    newProduct.product_ID = ID;
     newProduct.product_NAME = name;
     newProduct.product_PRICE = price;
 
@@ -23,6 +25,7 @@ void find_product(vector<Product>& product, string search_name) {
 
     for (const Product& p : product) {
         if (p.product_NAME == search_name) {
+            cout << "Product ID: " << p.product_ID << endl;
             cout << "Product name: " << p.product_NAME << endl;
             cout << "Product price: " << p.product_PRICE << endl;
             found = true;
@@ -49,6 +52,7 @@ int main() {
     vector<Product> product;
     int option;
     bool exitProgram = false;
+    string ID;
     string name;
     int price;
 
@@ -77,9 +81,12 @@ int main() {
                     break;
                 }
 
+                cout << "Enter product ID: " << endl;
+                cin >> ID;
+
                 cout << "Enter product price: ";
                 cin >> price;
-                add_product(product, name, price);
+                add_product(product, ID, name, price);
                 i++;
             }
         }
